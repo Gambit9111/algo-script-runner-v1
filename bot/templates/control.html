@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block main %}
+ <div class="container">
+  <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="{{ url_for('home') }}">Control Panel</a>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/auth/logout">Logout</a>
+        </li>
+      </ul>
+  </nav>
+ <h1 class="mt-5">Control Scripts</h1>
+ <p>Click the buttons below to start or stop the scripts.</p>
+ <div class="row">
+ <div class="col-md-6">
+   <div class="card">
+     <div class="card-body">
+       <h2 class="card-title">Script1</h2>
+       <p class="card-text">Argument: {{ script1_arg }}</p>
+       <p class="card-text">Status: {{ script1_status }}</p>
+       <form action="/script1/start" method="post">
+         <input type="text" name="arg" placeholder="Argument for Script1" class="form-control">
+         <input type="submit" class="btn btn-primary mt-2" value="Start">
+       </form>
+       <a href="/script1/stop" class="btn btn-danger mt-2">Stop</a>
+     </div>
+   </div>
+ </div>
+ <div class="col-md-6">
+   <div class="card">
+     <div class="card-body">
+       <h2 class="card-title">Script2</h2>
+       <p class="card-text">Argument: {{ script2_arg }}</p>
+       <p class="card-text">Status: {{ script2_status }}</p>
+       <form action="/script2/start" method="post">
+         <input type="text" name="arg" placeholder="Argument for Script2" class="form-control">
+         <input type="submit" class="btn btn-primary mt-2" value="Start">
+       </form>
+       <a href="/script2/stop" class="btn btn-danger mt-2">Stop</a>
+     </div>
+   </div>
+ </div>
+ </div>
+ </div>
+{% endblock %}
