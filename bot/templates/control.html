@@ -9,7 +9,9 @@
         </li>
       </ul>
   </nav>
- <h1 class="mt-5">Control Scripts</h1>
+<div class="row">
+ <h1 class="mt-5">Wallet balance: {{ wallet_balance }} $</h1>
+</div>
  <p>Click the buttons below to start or stop the scripts.</p>
  <div class="row">
  <div class="col-md-6">
@@ -27,19 +29,70 @@
    </div>
  </div>
  <div class="col-md-6">
-   <div class="card">
-     <div class="card-body">
-       <h2 class="card-title">Script2</h2>
-       <p class="card-text">Argument: {{ script2_arg }}</p>
-       <p class="card-text">Status: {{ script2_status }}</p>
-       <form action="/script2/start" method="post">
-         <input type="text" name="arg" placeholder="Argument for Script2" class="form-control">
-         <input type="submit" class="btn btn-primary mt-2" value="Start">
-       </form>
-       <a href="/script2/stop" class="btn btn-danger mt-2">Stop</a>
-     </div>
-   </div>
+  <div class="card">
+    <div class="card-body">
+      <h2 class="card-title">Spot Crawler --- {{ spot_crawler_status }}</h2>
+      <div class="row py-3">
+        <div class="col">
+          <p class="card-text">Symbol: {{ spot_crawler_symbol }}</p>
+          <p class="card-text">Quantity: {{ spot_crawler_qty }}</p>
+          <p class="card-text">Max Entry Size: {{ spot_crawler_max_entry_size }}</p>
+        </div>
+        <div class="col">
+          <p class="card-text">Step Size Up: {{ spot_crawler_step_size_up }}</p>
+          <p class="card-text">Step Size Down: {{ spot_crawler_step_size_down }}</p>
+          <p class="card-text">Trading Timer: {{ spot_crawler_trading_timer }}</p>
+        </div>
+      </div>
+      <form action="/spot-crawler/start" method="post">
+        <label for="symbol">Symbol:</label>
+        <input type="text" id="symbol" name="symbol" placeholder="Enter Symbol" class="form-control">
+        <label for="qty">Quantity:</label>
+        <input type="number" id="qty" name="qty" placeholder="Enter Quantity" class="form-control">
+        <label for="step_size_up">Step Size Up:</label>
+        <input type="number" step="0.001" id="step_size_up" name="step_size_up" placeholder="Enter Step Size Up" class="form-control">
+        <label for="step_size_down">Step Size Down:</label>
+        <input type="number" step="0.001" id="step_size_down" name="step_size_down" placeholder="Enter Step Size Down" class="form-control">
+        <label for="max_entry_size">Max Entry Size:</label>
+        <input type="number" id="max_entry_size" name="max_entry_size" placeholder="Enter Max Entry Size" class="form-control">
+        <label for="trading_timer">Trading Timer:</label>
+        <input type="number" id="trading_timer" name="trading_timer" placeholder="Enter Trading Timer" class="form-control">
+        <input type="submit" class="btn btn-primary mt-2" value="Start">
+      </form>
+      <a href="/spot-crawler/stop" class="btn btn-danger mt-2">Stop</a>
+    </div>
+  </div>
  </div>
+ <div class="col-md-6">
+  <div class="card">
+    <div class="card-body">
+      <h2 class="card-title">Keltner Channels --- {{ keltner_channels_status }}</h2>
+      <div class="row py-3">
+        <div class="col">
+          <p class="card-text">Symbol: {{ keltner_channels_symbol }}</p>
+          <p class="card-text">Quantity: {{ keltner_channels_qty }}</p>
+        </div>
+        <div class="col">
+          <p class="card-text">Trading Timer: {{ keltner_channels_trading_timer }}</p>
+          <p class="card-text">Interval: {{ keltner_channels_interval }}</p>
+        </div>
+      </div>
+      <form action="/keltner-channels/start" method="post">
+        <label for="symbol">Symbol:</label>
+        <input type="text" id="symbol" name="symbol" placeholder="Enter Symbol" class="form-control">
+        <label for="qty">Quantity:</label>
+        <input type="number" id="qty" name="qty" placeholder="Enter Quantity" class="form-control">
+        <label for="trading_timer">Trading Timer:</label>
+        <input type="number" id="trading_timer" name="trading_timer" placeholder="Enter Trading Timer" class="form-control">
+        <label for="interval">Interval:</label>
+        <input type="text" id="interval" name="interval" placeholder="Enter Interval" class="form-control">
+        <input type="submit" class="btn btn-primary mt-2" value="Start">
+      </form>
+      <a href="/keltner-channels/stop" class="btn btn-danger mt-2">Stop</a>
+    </div>
+  </div>
+ </div>
+ 
  </div>
  </div>
 {% endblock %}

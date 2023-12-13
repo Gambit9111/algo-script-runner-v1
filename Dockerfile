@@ -14,5 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 ENV NAME FLASK_SECRET_KEY
 ENV NAME ADMIN_USERNAME
 ENV NAME ADMIN_USERNAME
+ENV NAME BYBIT_API_KEY
+ENV NAME BYBIT_API_SECRET
 
 CMD ["sh", "-c", "cd /app/bot && gunicorn -w 4 -b 0.0.0.0:8003 main:app"]
